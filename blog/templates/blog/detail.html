@@ -10,19 +10,23 @@
 </div>
 
 <hr />
-<h3>댓글창</h3>
-{% for comment in blog.comments.all %}
+
 <div class="detail">
+  <h3>댓글창</h3>
+  {% for comment in blog.comments.all %}
   <strong>{{comment.body}}</strong>
   <p class="date">{{comment.date | date:'Y년 n월 j일 G시 i분'}}</p>
+  <div class="btn">
+    <a href="{% url 'comment_update' comment.pk %}">수정</a>
+  </div>
   <hr />
-</div>
-{% empty %}
-<p>댓글이 없습니다</p>
-{% endfor %}
+  {% empty %}
+  <p>댓글이 없습니다</p>
+  {% endfor %}
 
-<form action="" method="POST">
-  {% csrf_token %} {{comment_form.as_p}}
-  <input type="submit" value="등록" />
-</form>
+  <form action="" method="POST">
+    {% csrf_token %} {{comment_form.as_p}}
+    <input type="submit" value="등록" />
+  </form>
+</div>
 {% endblock %}
