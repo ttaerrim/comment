@@ -2,9 +2,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Blog, Comment
 from .forms import BlogForm, CommentForm
-<< << << < HEAD
-== == == =
->>>>>> > b2345edad40efaacbb7d5b2417db72aae24cca6c
 
 
 def home(request):
@@ -32,13 +29,7 @@ def detail(request, pk):
             comment = comment_form.save()
     comment_form = CommentForm()
     comments = blog.comments.all()
-
-
-<< << << < HEAD
-return render(request, 'blog/detail.html', {'blog': blog, 'comment_form': comment_form})
-== == == =
-return render(request, 'blog/detail.html', {'blog': blog, 'comments': comments, 'comment_form': comment_form})
->>>>>> > b2345edad40efaacbb7d5b2417db72aae24cca6c
+    return render(request, 'blog/detail.html', {'blog': blog, 'comments': comments, 'comment_form': comment_form})
 
 
 def update(request, pk):
